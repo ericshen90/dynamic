@@ -1,0 +1,55 @@
+#spring
+spring:
+  datasource:
+    druid:
+          stat-view-servlet:
+            loginUsername: admin
+            loginPassword: 123456
+    dynamic:
+      mp-enabled: true
+      primary: master #设置默认的数据源或者数据源组,默认值即为master,如果你主从默认下主库的名称就是master可不定义此项。
+      datasource:
+        master:
+          username: root
+          password: root
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/dd1?characterEncoding=utf8&useSSL=false
+          druid:
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            min-evictable-idle-time-millis: 30000
+            max-evictable-idle-time-millis: 30000
+            time-between-eviction-runs-millis: 0
+            validation-query: select 1
+            validation-query-timeout: -1
+            test-on-borrow: false
+            test-on-return: false
+            test-while-idle: true
+            pool-prepared-statements: true
+            max-open-prepared-statements: 100
+            filters: stat,wall
+            share-prepared-statements: true
+        slave:
+          username: root
+          password: root
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/dd2?characterEncoding=utf8&useSSL=false
+          druid:
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            min-evictable-idle-time-millis: 30000
+            max-evictable-idle-time-millis: 30000
+            time-between-eviction-runs-millis: 0
+            validation-query: select 1
+            validation-query-timeout: -1
+            test-on-borrow: false
+            test-on-return: false
+            test-while-idle: true
+            pool-prepared-statements: true
+            max-open-prepared-statements: 100
+            filters: stat,wall
+            share-prepared-statements: true
